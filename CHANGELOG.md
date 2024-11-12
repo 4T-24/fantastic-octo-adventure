@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/4T-24/fantastic-octo-adventure/compare/v1.0.0...v1.1.0) (2024-11-12)
+
+
+### Features
+
+* **init:** add documentation ([9355fba](https://github.com/4T-24/fantastic-octo-adventure/commit/9355fba0c049102a57999cda32a50be40e1b755d))
+
 # 1.0.0 (2024-11-12)
 
 
