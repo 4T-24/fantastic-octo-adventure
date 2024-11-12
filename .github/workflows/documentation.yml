@@ -1,0 +1,51 @@
+name: Build and Deploy Docs
+
+on:
+  push:
+    branches:
+      - main   # Deploy on pushes to the main branch
+  pull_request:
+    branches:
+      - main   # Build and save artifact on pull requests to main
+  workflow_dispatch:   # Allow manual triggering
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+
+      - name: Configure Hugo to use docs folder
+        run: |
+          echo 'contentDir = "docs"' >> config.toml
+
+      - name: Build Hugo site
+        run: hugo --minify
+
+      - name: Upload artifact (PRs only)
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v3
+        with:
+          name: hugo-site
+          path: public  # This is where Hugo builds the site by default
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public  # Hugo’s output directory
