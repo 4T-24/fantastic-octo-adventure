@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/4T-24/fantastic-octo-adventure/compare/v1.1.0...v1.1.1) (2024-11-12)
+
+
+### Bug Fixes
+
+* **init:** config hugo properly ([e6ce0dd](https://github.com/4T-24/fantastic-octo-adventure/commit/e6ce0dd1c2a4729fd7bf022e1b744cc46a7874ea))
+
 # [1.1.0](https://github.com/4T-24/fantastic-octo-adventure/compare/v1.0.0...v1.1.0) (2024-11-12)
 
 
