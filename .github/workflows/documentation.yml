@@ -2,7 +2,8 @@ name: Build and Deploy Docs
 
 on:
   push:
-    branches:
+    tags:
+      - '*'
   pull_request:
     types:
       - opened
@@ -36,6 +37,7 @@ jobs:
         run: |
           cd docs
           pip install -r requirements.txt
+          mkdocs build
 
       # Deploy with pr-preview only on PRs
       - name: Deploy preview
