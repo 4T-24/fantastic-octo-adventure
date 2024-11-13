@@ -3,43 +3,15 @@ name: Build and Deploy Docs
 on:
   push:
     branches:
-      - main   # Deploy on pushes to the main branch
   pull_request:
-    branches:
-      - main   # Build and save artifact on pull requests to main
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
   workflow_dispatch:   # Allow manual triggering
 
 jobs:
-  artifact:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3.x
-
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
-
-      - uses: actions/cache@v4
-        with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
-
-      - run: |
-          cd docs
-          pip install -r requirements.txt
-          mkdocs build
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: documentation
-          path: docs/site
-
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -60,7 +32,22 @@ jobs:
           restore-keys: |
             mkdocs-material-
 
-      - run: |
+      - name: Install and Build
+        if: github.event.action != 'closed'
+        run: |
           cd docs
           pip install -r requirements.txt
+
+      # Deploy with pr-preview only on PRs
+      - name: Deploy preview
+        if: github.event_name == 'pull_request'
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./docs/site
+          
+      # Deploy to GitHub Pages only when the main branch
+      - name: Deploy to GitHub Pages
+        run : |
+          cd docs
           mkdocs gh-deploy --force
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
