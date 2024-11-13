@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/4T-24/fantastic-octo-adventure/compare/v1.1.2...v1.1.3) (2024-11-13)
+
+
+### Bug Fixes
+
+* **init:** fix documentation workflow ([5259a6b](https://github.com/4T-24/fantastic-octo-adventure/commit/5259a6bc4024cc545d9abf8f9ceb841b884318f5))
+
 ## [1.1.2](https://github.com/4T-24/fantastic-octo-adventure/compare/v1.1.1...v1.1.2) (2024-11-13)
 
 
