@@ -1,0 +1,8 @@
+site_name: Documentation
+
+docs_dir: 'content'
+
+theme:
+  name: material
+
+use_directory_urls: false

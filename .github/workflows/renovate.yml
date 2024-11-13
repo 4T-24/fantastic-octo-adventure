@@ -25,7 +25,7 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       - name: Run Renovate
-        uses: renovatebot/github-action@v41  # Use the latest version here
+        uses: renovatebot/github-action@v41.0.2  # Use the latest version here
         with:
           ssh: true  # Enable SSH for pushing
         env:

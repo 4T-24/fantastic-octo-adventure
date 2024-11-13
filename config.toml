@@ -1,6 +1,0 @@
-baseURL = 'https://4t-24.github.io/fantastic-octo-adventure'
-languageCode = 'en-us'
-title = 'Documentation'
-
-contentDir = "docs"
-publishDir = "public"
