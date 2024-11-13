@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/4T-24/fantastic-octo-adventure/compare/v1.1.1...v1.1.2) (2024-11-13)
+
+
+### Bug Fixes
+
+* **init:** switch to mkdocs ([d36f657](https://github.com/4T-24/fantastic-octo-adventure/commit/d36f657a3906f9e0b06cdd579e44fc487074bf2e))
+
 ## [1.1.1](https://github.com/4T-24/fantastic-octo-adventure/compare/v1.1.0...v1.1.1) (2024-11-12)
 
 
