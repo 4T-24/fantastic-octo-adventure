@@ -30,9 +30,9 @@ jobs:
             mkdocs-material-
 
       - run: |
-        cd docs
-        pip install -r requirements.txt
-        mkdocs build
+          cd docs
+          pip install -r requirements.txt
+          mkdocs build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
